@@ -13,7 +13,7 @@ It is repository of quickstart instructions for Sixfab Raspberry Pi 3G/4G/LTE Ba
 # Pinout
 ![Pinout](https://sixfab.com/wp-content/uploads/2018/10/3g-4g-lte_base_shield_pinout.png)
 
-### Warnings
+# Warnings
 
 *   For the best working condition, use at least a [2A adapter](https://sixfab.com/product/official-raspberry-pi-universal-power-supply/) or power source.
 *   We don't recommend usage of long and low-quality micro USB cables between Base Shield and Raspberry Pi. It causes data and power loss. Thus, the cable included the package works greatly.
