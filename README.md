@@ -9,6 +9,7 @@ It is repository of quickstart instructions for Sixfab Raspberry Pi 3G/4G/LTE Ba
 *   [Raspberry Pi Twitter Bot with Sixfab GPRS/3G/LTE Shield](https://sixfab.com/raspberry-pi-twitter-bot-with-sixfab-gprs3glte-shield/)
 *   [Raspberry Pi Security System with Sixfab 3G/LTE Shields](https://sixfab.com/tutorial-7-raspberry-pi-security-system-with-sixfab-3glte-shields/)
 *   [GPS Tracker with 3G, 4G/LTE shield](https://sixfab.com/gps-tracker-with-3g-4glte-shield/)
+*   [PPP Installer for 3G, 4G/LTE shield](https://sixfab.com/ppp-installer-for-sixfab-shield/)
 
 # Pinout
 ![Pinout](https://sixfab.com/wp-content/uploads/2018/10/3g-4g-lte_base_shield_pinout.png)
