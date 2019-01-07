@@ -27,7 +27,7 @@ def parseGPS(data):
         degree = dc[0]        #degree
         checksum = dc[1]      #checksum
         print "time : %s, latitude : %s(%s), longitude : %s(%s), speed : %s, True Course : %s, Date : %s, Magnetic Variation : %s(%s),Checksum : %s "%    (time,lat,dirLat,lon,dirLon,speed,trCourse,date,variation,degree,checksum)
-   else:
+    else:
         print "Printed data is ",data[0:6]
 def decode(coord):
     #Converts DDDMM.MMMMM -> DD deg MM.MMMMM min
