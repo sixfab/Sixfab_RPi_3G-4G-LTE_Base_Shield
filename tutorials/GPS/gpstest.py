@@ -39,13 +39,13 @@ def decode(coord):
     return deg + " deg " + min + "." + tail + " min"
 
 print "Connecting port"
-serw = serial.Serial(portwrite, baudrate = 115200, timeout = 1)
+serw = serial.Serial(portwrite, baudrate = 115200, timeout = 1,rtscts=True, dsrdtr=True)
 serw.write('AT+QGPS=1\r')
 serw.close()
 sleep(0.5)
 
 print "Receiving GPS data"
-ser = serial.Serial(port, baudrate = 115200, timeout = 0.5)
+ser = serial.Serial(port, baudrate = 115200, timeout = 0.5,rtscts=True, dsrdtr=True)
 while True:
    data = ser.readline()
    parseGPS(data)
