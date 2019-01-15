@@ -22,7 +22,7 @@ def parseGPS(data):
         date = sdata[9][0:2] + "/" + sdata[9][2:4] + "/" + sdata[9][4:6]
                            #date
         variation = sdata[10]  #variation
-        degreeChecksum = sdata[11]
+        degreeChecksum = sdata[12]
         dc = degreeChecksum.split("*")
         degree = dc[0]        #degree
         checksum = dc[1]      #checksum
