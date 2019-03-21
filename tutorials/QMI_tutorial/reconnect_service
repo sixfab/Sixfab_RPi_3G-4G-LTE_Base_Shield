@@ -1,0 +1,14 @@
+[Unit]
+Description=QMI Auto Connection
+After=network.target
+
+[Service]
+ExecStart=/bin/sh /usr/src/qmi_reconnect.sh
+WorkingDirectory=/home/pi/
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
