@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 : '
 QMI installation script by Sixfab
 
