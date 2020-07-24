@@ -46,10 +46,10 @@ mkdir -p /usr/share/udhcpc
 cp /home/pi/files/quectel-CM/default.script /usr/share/udhcpc/
 chmod +x /usr/share/udhcpc/default.script
 
-echo "${YELLOW}Change directory to /home/pi/files/drivers${SET}"
 if [ -d /home/pi/files/drivers ]; then
-    cd /home/pi/files/drivers
-    make && make install
+    echo "${YELLOW}Change directory to /home/pi/files/drivers${SET}";
+    cd /home/pi/files/drivers;
+    make && make install;    
 fi
 
 echo "${YELLOW}Change directory to /home/pi/files/quectel-CM${SET}"
