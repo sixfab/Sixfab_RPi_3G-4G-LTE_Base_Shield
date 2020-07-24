@@ -22,12 +22,6 @@ echo "${YELLOW}Downloading source files${SET}"
 wget https://github.com/sixfab/Sixfab_RPi_3G-4G-LTE_Base_Shield/raw/master/tutorials/QMI_tutorial/src/quectel-CM.zip
 unzip quectel-CM.zip -d /home/pi/files/ && rm -r quectel-CM.zip
 
-
-#echo "${YELLOW}Updating rpi${SET}"
-#apt-get update
-
-#echo "${YELLOW}Downlading kernel headers${SET}"
-#apt-get install raspberrypi-kernel-headers
 echo "${YELLOW}Checking Kernel${SET}"
 
 case $(uname -r) in
@@ -39,6 +33,7 @@ case $(uname -r) in
         echo "${YELLOW}Downloading source files${SET}"
         wget https://github.com/sixfab/Sixfab_RPi_3G-4G-LTE_Base_Shield/raw/master/tutorials/QMI_tutorial/src/4.19.1.zip -O drivers.zip
         unzip drivers.zip -d /home/pi/files/ && rm -r drivers.zip;;
+    5.4*) echo $(uname -r) based kernel contains driver;;
     *) echo "Driver for $(uname -r) kernel not found";exit 1;
 
 esac
@@ -52,13 +47,16 @@ cp /home/pi/files/quectel-CM/default.script /usr/share/udhcpc/
 chmod +x /usr/share/udhcpc/default.script
 
 echo "${YELLOW}Change directory to /home/pi/files/drivers${SET}"
-cd /home/pi/files/drivers
-make && make install
+if [ -d /home/pi/files/drivers ]; then
+    cd /home/pi/files/drivers
+    make && make install
+fi
 
 echo "${YELLOW}Change directory to /home/pi/files/quectel-CM${SET}"
 cd /home/pi/files/quectel-CM
 make
 
+chmod 777  /home/pi/files/quectel-CM
 echo "${YELLOW}After reboot please follow commands mentioned below${SET}"
 echo "${YELLOW}go to /home/pi/files/quectel-CM and run sudo ./quectel-CM -s [YOUR APN]${SET}"
 
