@@ -2,6 +2,7 @@
 
 : '
 QMI installation script by Sixfab
+This script is strictly for Raspberry Pi OS.
 
 Created By Metin Koc, Nov 2018
 Modified by Saeed Johar, 11th June 2019
@@ -11,16 +12,20 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 SET='\033[0m'
 
-echo "${YELLOW}Clear Files${SET}"
-rm -rf /home/pi/files
-rm -rf /home/pi/files.zip
+DIR=/home/pi/files
+UDHCPC_DIR=/usr/share/udhcpc
 
-echo "${YELLOW}Change directory to /home/pi${SET}"
-cd /home/pi
+echo "${YELLOW}Clean Old Files${SET}"
+if [ -d $DIR ]; then 
+    rm -rf $DIR
+    rm -rf $DIR.zip ; fi # for old directory
+
+echo "${YELLOW}Change directory to /home/$(whoami)${SET}"
+cd /home/$(whoami)
 
 echo "${YELLOW}Downloading source files${SET}"
 wget https://github.com/sixfab/Sixfab_RPi_3G-4G-LTE_Base_Shield/raw/master/tutorials/QMI_tutorial/src/quectel-CM.zip
-unzip quectel-CM.zip -d /home/pi/files/ && rm -r quectel-CM.zip
+unzip quectel-CM.zip -d $DIR && rm -r quectel-CM.zip
 
 echo "${YELLOW}Checking Kernel${SET}"
 
@@ -28,37 +33,37 @@ case $(uname -r) in
     4.14*) echo $(uname -r) based kernel found
         echo "${YELLOW}Downloading source files${SET}"
         wget https://github.com/sixfab/Sixfab_RPi_3G-4G-LTE_Base_Shield/raw/master/tutorials/QMI_tutorial/src/4.14.zip -O drivers.zip
-        unzip drivers.zip -d /home/pi/files/ && rm -r drivers.zip;;
+        unzip drivers.zip -d $DIR && rm -r drivers.zip;;
     4.19*) echo $(uname -r) based kernel found 
         echo "${YELLOW}Downloading source files${SET}"
         wget https://github.com/sixfab/Sixfab_RPi_3G-4G-LTE_Base_Shield/raw/master/tutorials/QMI_tutorial/src/4.19.1.zip -O drivers.zip
-        unzip drivers.zip -d /home/pi/files/ && rm -r drivers.zip;;
+        unzip drivers.zip -d $DIR && rm -r drivers.zip;;
     5.4*) echo $(uname -r) based kernel contains driver;;
     *) echo "Driver for $(uname -r) kernel not found";exit 1;
 
 esac
 
 echo "${YELLOW}Installing udhcpc${SET}"
-apt-get install udhcpc
+apt install udhcpc
 
 echo "${YELLOW}Copying udhcpc default script${SET}"
-mkdir -p /usr/share/udhcpc
-cp /home/pi/files/quectel-CM/default.script /usr/share/udhcpc/
-chmod +x /usr/share/udhcpc/default.script
+mkdir -p $UDHCPC_DIR
+cp $DIR/quectel-CM/default.script $UDHCPC_DIR/
+chmod +x $UDHCPC_DIR/default.script
 
-if [ -d /home/pi/files/drivers ]; then
-    echo "${YELLOW}Change directory to /home/pi/files/drivers${SET}";
-    cd /home/pi/files/drivers;
+if [ -d $DIR/drivers ]; then
+    echo "${YELLOW}Change directory to $DIR/drivers${SET}";
+    cd $DIR/drivers;
     make && make install;    
 fi
 
-echo "${YELLOW}Change directory to /home/pi/files/quectel-CM${SET}"
-cd /home/pi/files/quectel-CM
+echo "${YELLOW}Change directory to $DIR/quectel-CM${SET}"
+cd $DIR/quectel-CM
 make
 
-chmod 777  /home/pi/files/quectel-CM
+chmod 777  $DIR/quectel-CM
 echo "${YELLOW}After reboot please follow commands mentioned below${SET}"
-echo "${YELLOW}go to /home/pi/files/quectel-CM and run sudo ./quectel-CM -s [YOUR APN]${SET}"
+echo "${YELLOW}go to $DIR/quectel-CM and run sudo ./quectel-CM -s [YOUR APN]${SET}"
 
 read -p "Press ENTER key to reboot" ENTER
 reboot
