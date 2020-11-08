@@ -12,7 +12,7 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 SET='\033[0m'
 
-DIR=/home/pi/files
+DIR=/home/$(whoami)/files
 UDHCPC_DIR=/usr/share/udhcpc
 
 echo "${YELLOW}Clean Old Files${SET}"
