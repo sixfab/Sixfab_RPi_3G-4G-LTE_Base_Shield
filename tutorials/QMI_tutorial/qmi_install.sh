@@ -12,7 +12,7 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 SET='\033[0m'
 
-DIR=/home/$(whoami)/files
+DIR=/home/pi/files
 UDHCPC_DIR=/usr/share/udhcpc
 
 echo "${YELLOW}Clean Old Files${SET}"
@@ -20,8 +20,8 @@ if [ -d $DIR ]; then
     rm -rf $DIR
     rm -rf $DIR.zip ; fi # for old directory
 
-echo "${YELLOW}Change directory to /home/$(whoami)${SET}"
-cd /home/$(whoami)
+echo "${YELLOW}Change directory to /home/pi${SET}"
+cd /home/pi
 
 echo "${YELLOW}Downloading source files${SET}"
 wget https://github.com/sixfab/Sixfab_RPi_3G-4G-LTE_Base_Shield/raw/master/tutorials/QMI_tutorial/src/quectel-CM.zip
