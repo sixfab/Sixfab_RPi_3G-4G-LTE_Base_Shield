@@ -24,7 +24,7 @@ echo "${YELLOW}Change directory to /home/pi${SET}"
 cd /home/pi
 
 echo "${YELLOW}Downloading source files${SET}"
-wget https://github.com/sixfab/Sixfab_RPi_3G-4G-LTE_Base_Shield/raw/master/tutorials/QMI_tutorial/src/quectel-CM.zip
+wget https://github.com/sixfab/Sixfab_RPi_3G-4G-LTE_Base_Shield/raw/master/tutorials/QMI_tutorial/src/quectel-CM.zip -O quectel-CM.zip
 unzip quectel-CM.zip -d $DIR && rm -r quectel-CM.zip
 
 echo "${YELLOW}Checking Kernel${SET}"
