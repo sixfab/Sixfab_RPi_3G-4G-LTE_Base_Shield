@@ -46,6 +46,10 @@ esac
 echo "${YELLOW}Installing udhcpc${SET}"
 apt install udhcpc
 
+echo "denyinterfaces wwan0" >> /etc/dhcpcd.conf
+sudo systemctl daemon-reload
+sudo systemctl restart dhcpcd
+
 echo "${YELLOW}Copying udhcpc default script${SET}"
 mkdir -p $UDHCPC_DIR
 cp $DIR/quectel-CM/default.script $UDHCPC_DIR/
