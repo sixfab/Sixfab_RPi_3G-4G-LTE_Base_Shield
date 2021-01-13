@@ -39,6 +39,8 @@ case $(uname -r) in
         wget https://github.com/sixfab/Sixfab_RPi_3G-4G-LTE_Base_Shield/raw/master/tutorials/QMI_tutorial/src/4.19.1.zip -O drivers.zip
         unzip drivers.zip -d $DIR && rm -r drivers.zip;;
     5.4*) echo $(uname -r) based kernel contains driver;;
+    5.10*) echo $(uname -r) based kernel contains driver;;
+
     *) echo "Driver for $(uname -r) kernel not found";exit 1;
 
 esac
